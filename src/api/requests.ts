@@ -7,6 +7,7 @@ export const requests = {
       return result.data;
     } catch(e) {
       console.warn(e);
+      throw new Error('Ошбика загруки');
     }
   }
 }

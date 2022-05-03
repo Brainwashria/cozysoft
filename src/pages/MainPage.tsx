@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import JokeItem from "../components/JokeItem";
 import {fetchJokes} from "../store/reducers/ActionCreators";
 import {Link} from "react-router-dom";
@@ -6,13 +6,13 @@ import {useAppDispatch, useAppSelector} from "../hooks";
 
 function MainPage() {
   const dispatch = useAppDispatch();
-  const jokes = useAppSelector((state) => {return state.jokeSlice.jokes})
-  const isLoading = useAppSelector((state) => {return state.jokeSlice.isLoading})
+  const jokes = useAppSelector((state) => {return state.jokeSlice.jokes});
+  const isLoading = useAppSelector((state) => {return state.jokeSlice.isLoading});
   useEffect(() => {
-    if(isLoading) {
+    if (isLoading) {
       dispatch(fetchJokes())
     }
-  }, [ isLoading ])
+  }, [ isLoading ]);
   return (
     <div className='main-page'>
       <div className='container'>

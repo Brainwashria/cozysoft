@@ -1,22 +1,20 @@
-import {CombinedState} from "@reduxjs/toolkit";
-import {IState} from "../models/IState";
+import { TState as TJokeState } from '../store/reducers/JokeSlice'
+import { TState as TFavoriteState } from '../store/reducers/FavoriteJokeSlice'
 
-export function loadFromLocalStorage() {
+type TLocalStorage = {jokeSlice: TJokeState, FavoriteJokeSlice: TFavoriteState};
+
+export function loadFromLocalStorage(): Partial<TLocalStorage> {
   try {
     const serialisedState = localStorage.getItem("persistentState");
     if (serialisedState === null) return {};
     return JSON.parse(serialisedState);
   } catch (e) {
     console.warn(e);
-    return undefined;
+    return {};
   }
 }
 
-export function saveToLocalStorage(state: CombinedState<{jokeSlice: IState, FavoriteJokeSlice: IState}>) {
-  try {
-    const serialisedState = JSON.stringify(state);
-    localStorage.setItem("persistentState", serialisedState);
-  } catch (e) {
-    console.warn(e);
-  }
+export function saveToLocalStorage(state: TLocalStorage): void {
+  const serialisedState = JSON.stringify(state);
+  localStorage.setItem("persistentState", serialisedState);
 }

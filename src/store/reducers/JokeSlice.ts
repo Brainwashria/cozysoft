@@ -1,7 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IState} from "../../models/IState";
+import {TJoke} from "../../components/JokeItem/types";
 
-let initialState: IState = {
+export type TState = {
+  jokes: Array<TJoke>,
+  isLoading: boolean
+}
+
+const initialState: TState = {
   jokes: [],
   isLoading: true
 }
@@ -10,7 +15,7 @@ let initialState: IState = {
   name: 'jokes',
   initialState,
   reducers: {
-    fetchStartLoading: (state) => {
+    startLoading: (state) => {
       state.isLoading = true;
     },
     fetchNewJokes: (state, action) => {
@@ -20,7 +25,7 @@ let initialState: IState = {
   }
 })
 
-export const { fetchNewJokes, fetchStartLoading } = jokeSlice.actions
+export const { fetchNewJokes, startLoading } = jokeSlice.actions
 export default jokeSlice.reducer;
 
 

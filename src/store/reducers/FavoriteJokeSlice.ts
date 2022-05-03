@@ -1,11 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IState} from "../../models/IState";
+import {TJoke} from "../../components/JokeItem/types";
 
-let initialState: IState = {
-  jokes: [],
-  isLoading: true
+export type TState = {
+  jokes: Array<TJoke>,
 }
 
+const initialState: TState = {
+  jokes: [],
+}
 
 const favoriteJokeSlice = createSlice({
   name: 'favJokes',
@@ -17,7 +19,6 @@ const favoriteJokeSlice = createSlice({
     },
     addNewJoke: (state, action) => {
       state.jokes = [...state.jokes,action.payload]
-      state.isLoading = false;
     }
   }
 })

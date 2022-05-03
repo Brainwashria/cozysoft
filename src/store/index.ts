@@ -8,16 +8,8 @@ const rootReducer = combineReducers({
   jokeSlice, FavoriteJokeSlice
 })
 
-export const appStore = () => {
-  const persistedState = loadFromLocalStorage();
-  return configureStore({
-    preloadedState: persistedState,
-    reducer: rootReducer,
-  })
-}
-
 export type RootState = ReturnType<typeof rootReducer>
-export type AppStore = ReturnType<typeof appStore>
+export type AppStore = typeof store
 export type AppDispatch = AppStore['dispatch']
 
 const persistedState = loadFromLocalStorage();
